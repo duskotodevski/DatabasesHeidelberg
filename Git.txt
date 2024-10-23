@@ -1,0 +1,56 @@
+navigate to directory
+
+#start git
+
+git init
+Remove-Item -Force -Recurse .git
+
+#connect to remote
+git remote add origin https://github.com/duskotodevski/DatabasesHeidelberg.git
+
+#copy remote repository
+git clone
+https://github.com/duskotodevski/DatabasesHeidelberg.git
+
+#fetch the latest changes
+git fetch origin main (ili ako se vika master)
+
+#merge the changes form the main branch
+git merge origin/main
+
+## If there are any merge conflicts, you'll need to resolve them manually before proceeding.
+## Alternative (using git pull)
+
+##You can combine the fetch and merge steps using git pull
+git pull origin main
+
+#add README.md file
+git add README.md
+
+# remove the file
+git rm filename
+
+
+# Adds all files in the current directory and its subdirectories
+git add .
+
+# Commit the change:
+git commit -m
+
+
+#push to GitHub
+git push origin main
+
+#Shows the current state of the repository (staged changes, unstaged changes, untracked files
+git status
+
+#Downloads and merges changes from a remote repository into the current branch
+git pull origin <branch_name>
+
+#Lists all branches in the repository (local and remote-tracking)
+git branch
+
+
+
+ 
+
