@@ -1,0 +1,109 @@
+-- Create the database
+CREATE DATABASE University;
+USE University;
+
+-- Create the Students table
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY,
+    FirstName VARCHAR(255) NOT NULL,
+    LastName VARCHAR(255) NOT NULL,
+    Major VARCHAR(255),
+    GPA DECIMAL(3, 2)
+);
+
+-- Create the Courses table
+CREATE TABLE Courses (
+    CourseID INT PRIMARY KEY,
+    CourseName VARCHAR(255) NOT NULL,
+    Department VARCHAR(255)
+);
+
+-- Create the Enrollment table (to link Students and Courses)
+CREATE TABLE Enrollment (
+    EnrollmentID INT PRIMARY KEY,
+    StudentID INT,
+    CourseID INT,
+    Grade VARCHAR(2),
+    FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+    FOREIGN KEY (CourseID) REFERENCES Courses(CourseID)
+);
+
+-- Create the Professors table
+CREATE TABLE Professors (
+    ProfessorID INT PRIMARY KEY,
+    FirstName VARCHAR(255) NOT NULL,
+    LastName VARCHAR(255) NOT NULL,
+    Department VARCHAR(255)
+);
+
+-- Create the Teaches table (to link Professors and Courses)
+CREATE TABLE Teaches (
+    ProfessorID INT,
+    CourseID INT,
+    Semester VARCHAR(255),
+    FOREIGN KEY (ProfessorID) REFERENCES Professors(ProfessorID),
+    FOREIGN KEY (CourseID) REFERENCES Courses(CourseID)
+);
+
+-- Insert some sample data into Students
+INSERT INTO Students (StudentID, FirstName, LastName, Major, GPA) VALUES
+(1, 'Alice', 'Smith', 'Computer Science', 3.8),
+(2, 'Bob', 'Johnson', 'Mathematics', 3.5),
+(3, 'Carol', 'Davis', 'Biology', 3.2);
+
+-- Insert some sample data into Courses
+INSERT INTO Courses (CourseID, CourseName, Department) VALUES
+(101, 'Introduction to Programming', 'Computer Science'),
+(102, 'Calculus I', 'Mathematics'),
+(103, 'Biology 101', 'Biology');
+
+-- Insert some sample data into Enrollment
+INSERT INTO Enrollment (EnrollmentID, StudentID, CourseID, Grade) VALUES
+(1, 1, 101, 'A'),
+(2, 2, 102, 'B'),
+(3, 3, 103, 'C');
+
+-- Insert some sample data into Professors
+INSERT INTO Professors (ProfessorID, FirstName, LastName, Department) VALUES
+(1, 'Dr. John', 'Doe', 'Computer Science'),
+(2, 'Dr. Jane', 'Smith', 'Mathematics');
+
+-- Insert some sample data into Teaches
+INSERT INTO Teaches (ProfessorID, CourseID, Semester) VALUES
+(1, 101, 'Fall 2024'),
+(2, 102, 'Fall 2024');
+
+psql -h localhost -p 5432 -d Test_Databases -U postgres
+
+
+######
+Connecting and Basics
+
+psql -d database_name -U username: Connects to a specific database with the given username. You'll often need to provide a password as well.
+\l (or \list): Lists all available databases.
+\c database_name: Switches the connection to a different database.
+\q: Quits the psql command-line interface.
+\?: Displays help information and lists all available psql commands.
+Viewing Database Objects
+
+\dt: Lists all tables in the current database.
+\dv: Lists all views.
+\dn: Lists all schemas.
+\df: Lists all functions.
+\d table_name: Shows the structure (columns, data types, etc.) of a specific table.
+
+######
+Working with Queries and Output
+
+\g or \g filename: Executes the previously typed query (useful for repeating queries with slight modifications) or saves the output to a file.
+\s or \s filename: Displays the command history or saves it to a file.
+\i filename: Executes SQL commands from a file. This is great for running scripts.
+\o filename: Redirects query output to a file.
+\timing: Toggles the display of query execution time.
+
+#######
+Other Important Commands
+
+\du: Lists database users and their roles.
+\password username: Changes the password for a user.
+\! command: Executes a shell command from within psql.
