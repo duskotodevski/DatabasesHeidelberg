@@ -1,3 +1,5 @@
+7dGvsY0UjJ0oSgpJ spbs
+
 navigate to directory
 
 #start git
@@ -13,7 +15,7 @@ git clone
 https://github.com/duskotodevski/DatabasesHeidelberg.git
 
 #fetch the latest changes
-git fetch origin main (ili ako se vika master)
+gigit (ili ako se vika master)
 
 #merge the changes form the main branch
 git merge origin/main
